@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>जनसारथी - Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="dashboard.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="dashboard-header">
+
+    <div class="header-left">
+
+        <div class="logo-area">
+
+            <img
+                src="logo1.png"
+                alt="जनसारथी"
+                class="dashboard-logo"
+            >
+
+            <div>
+
+                <h1>जनसारथी</h1>
+
+                <span>
+                    योग्य योजना, योग्य माहिती, योग्य वेळी.
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="header-right">
+
+        <button
+            type="button"
+            class="notification-btn"
+            onclick="toggleNotifications()"
+            title="Notifications"
+        >
+            🔔
+            <span id="notificationCount">0</span>
+        </button>
+
+
+        <button
+            type="button"
+            class="profile-btn"
+            onclick="scrollToProfile()"
+        >
+            👤
+            <span id="headerUserName">Profile</span>
+        </button>
+
+
+        <button
+            type="button"
+            class="logout-btn"
+            onclick="showLogoutModal()"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+<nav class="dashboard-feature-nav" aria-label="डॅशबोर्ड सुविधा">
+    <span class="feature-nav-label">सुविधा</span>
+    <button type="button" onclick="analyzeProfile()">🧠 प्रोफाइल विश्लेषण</button>
+    <button type="button" onclick="getRecommendedSchemes()">🎯 माझ्यासाठी योजना</button>
+    <button type="button" onclick="openSchemeComparison()">⚖️ योजना तुलना</button>
+    <button type="button" onclick="openBenefitOptimizer()">💰 फायदे</button>
+    <button type="button" onclick="openLifeScheme()">🌱 जीवन घटना</button>
+</nav>
+
+
+
+<!-- =====================================================
+     NOTIFICATION PANEL
+===================================================== -->
+
+<div
+    id="notificationPanel"
+    class="notification-panel"
+    style="display:none;"
+>
+
+    <div class="notification-header">
+
+        <h3>🔔 Notifications</h3>
+
+        <button
+            type="button"
+            onclick="toggleNotifications()"
+        >
+            ✕
+        </button>
+
+    </div>
+
+
+    <div id="notificationList">
+
+        <div class="empty-notification">
+
+            सध्या कोणतीही नवीन सूचना नाही.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="dashboard-container">
+
+
+<!-- =====================================================
+     WELCOME
+===================================================== -->
+
+<section class="welcome-section">
+
+    <div>
+
+        <h2>
+
+            नमस्कार,
+
+            <span id="welcomeUserName">
+                आपले स्वागत आहे!
+            </span>
+
+            👋
+
+        </h2>
+
+
+        <p>
+
+            तुमच्या प्रोफाइलनुसार आणि गरजेनुसार
+            सरकारी योजनांची माहिती मिळवा.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PROFILE
+===================================================== -->
+
+<section
+    class="dashboard-section"
+    id="profileSection"
+>
+
+    <div class="section-title">
+
+        <div>
+
+            <h2>👤 माझे प्रोफाइल</h2>
+
+            <p>
+                तुमची माहिती योजनांच्या पात्रतेसाठी वापरली जाते.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="profile-card">
+
+
+        <div class="profile-item">
+
+            <span>नाव</span>
+
+            <strong id="profileName">-</strong>
+
+        </div>
+
+
+        <div class="profile-item">
+
+            <span>मोबाईल</span>
+
+            <strong id="profileMobile">-</strong>
+
+        </div>
+
+
+        <div class="profile-item">
+
+            <span>वय</span>
+
+            <strong id="profileAge">-</strong>
+
+        </div>
+
+
+        <div class="profile-item">
+
+            <span>लिंग</span>
+
+            <strong id="profileGender">-</strong>
+
+        </div>
+
+
+        <div class="profile-item">
+
+            <span>राज्य</span>
+
+            <strong id="profileState">-</strong>
+
+        </div>
+
+
+        <div class="profile-item">
+
+            <span>जिल्हा</span>
+
+            <strong id="profileDistrict">-</strong>
+
+        </div>
+
+
+        <div class="profile-item">
+
+            <span>क्षेत्र</span>
+
+            <strong id="profileAreaType">-</strong>
+
+        </div>
+
+
+        <div class="profile-item">
+
+            <span>प्रवर्ग</span>
+
+            <strong id="profileCaste">-</strong>
+
+        </div>
+
+
+        <div class="profile-item">
+
+            <span>व्यवसाय</span>
+
+            <strong id="profileOccupation">-</strong>
+
+        </div>
+
+
+        <div class="profile-item">
+
+            <span>वार्षिक उत्पन्न</span>
+
+            <strong id="profileIncome">-</strong>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SMART ASSISTANCE
+===================================================== -->
+
+<section class="dashboard-section">
+
+    <div class="section-title">
+
+        <div>
+
+            <h2>🤖 स्मार्ट सहाय्य</h2>
+
+            <p>
+                AI च्या मदतीने सरकारी योजनांची माहिती मिळवा.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+
+        <!-- AI PROFILE -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🧠
+            </div>
+
+            <div class="step-label">
+                STEP 1
+            </div>
+
+            <h3>
+                AI प्रोफाइल विश्लेषण
+            </h3>
+
+            <p>
+
+                तुमच्या प्रोफाइलचे AI द्वारे विश्लेषण करून
+                संबंधित योजनांची माहिती मिळवा.
+
+            </p>
+
+            <button
+                type="button"
+                class="feature-btn"
+                onclick="analyzeProfile()"
+            >
+                विश्लेषण करा
+            </button>
+
+        </div>
+
+
+
+        <!-- MY SCHEMES -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🎯
+            </div>
+
+            <div class="step-label">
+                STEP 2
+            </div>
+
+            <h3>
+                माझ्यासाठी योजना
+            </h3>
+
+            <p>
+
+                तुमच्या प्रोफाइलनुसार योग्य सरकारी योजना
+                शोधा.
+
+            </p>
+
+            <button
+                type="button"
+                class="feature-btn"
+                onclick="getRecommendedSchemes()"
+            >
+                योजना शोधा
+            </button>
+
+        </div>
+
+
+
+        <!-- COMPARISON -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                ⚖️
+            </div>
+
+            <h3>
+                योजना तुलना
+            </h3>
+
+            <p>
+
+                दोन सरकारी योजनांची पात्रता, लाभ आणि
+                कागदपत्रांची तुलना करा.
+
+            </p>
+
+            <button
+                type="button"
+                class="feature-btn"
+                onclick="openSchemeComparison()"
+            >
+                तुलना करा
+            </button>
+
+        </div>
+
+
+
+        <!-- BENEFIT OPTIMIZER -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                💰
+            </div>
+
+            <h3>
+                Benefit Optimizer
+            </h3>
+
+            <p>
+
+                उपलब्ध योजनांमधून मिळणारे संभाव्य फायदे
+                समजून घ्या.
+
+            </p>
+
+            <button
+                type="button"
+                class="feature-btn"
+                onclick="openBenefitOptimizer()"
+            >
+                फायदा तपासा
+            </button>
+
+        </div>
+
+
+
+        <!-- LIFE SCHEME -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🧠
+            </div>
+
+            <h3>
+                AI Life Scheme
+            </h3>
+
+            <p>
+
+                तुमच्या आयुष्यात सध्या घडत असलेल्या घटना
+                आणि परिस्थितीनुसार संबंधित सरकारी योजना शोधा.
+
+            </p>
+
+            <button
+                type="button"
+                class="feature-btn"
+                onclick="openLifeScheme()"
+            >
+                जीवनातील घटना तपासा
+            </button>
+
+        </div>
+
+
+
+        <!-- =================================================
+             APPLICATION TRACKER CARD
+        ================================================= -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📋
+            </div>
+
+            <h3>
+                Application Tracker
+            </h3>
+
+            <p>
+
+                तुम्ही केलेल्या सरकारी योजना अर्जाची
+                स्थिती एका ठिकाणी तपासा.
+
+            </p>
+
+            <button
+                type="button"
+                class="feature-btn"
+                onclick="openApplicationTracker()"
+            >
+                अर्जाची स्थिती तपासा
+            </button>
+
+        </div>
+
+
+
+        <!-- =================================================
+             FAKE SCHEME DETECTOR CARD
+        ================================================= -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🛡️
+            </div>
+
+            <h3>
+                Fake Scheme Detector
+            </h3>
+
+            <p>
+
+                WhatsApp, SMS किंवा सोशल मीडियावर मिळालेली
+                सरकारी योजनेची माहिती तपासा.
+
+            </p>
+
+            <button
+                type="button"
+                class="feature-btn"
+                onclick="openFakeSchemeDetector()"
+            >
+                योजना तपासा
+            </button>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     APPLICATION TRACKER
+     
+     IMPORTANT:
+     हा section feature-grid च्या बाहेर आहे.
+     त्यामुळे तो स्वतंत्रपणे खाली उघडेल.
+===================================================== -->
+
+<section
+    class="dashboard-section"
+    id="applicationTrackerSection"
+    style="display:none;"
+>
+
+
+    <div class="section-title">
+
+        <div>
+
+            <h2>
+                📋 Application Tracker
+            </h2>
+
+            <p>
+                तुमच्या सरकारी अर्जाची स्थिती तपासा.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="result-card">
+
+
+        <h3>
+            🔍 अर्जाची माहिती
+        </h3>
+
+
+        <p>
+
+            तुमची योजना आणि अर्ज क्रमांक टाका.
+            पुढील तपासणी संबंधित सरकारी अधिकृत संकेतस्थळावर होईल.
+
+        </p>
+
+
+
+        <label for="trackerScheme">
+
+            योजना निवडा
+
+        </label>
+
+
+        <select id="trackerScheme">
+
+            <option value="">
+
+                -- योजना निवडा --
+
+            </option>
+
+        </select>
+
+
+
+        <label for="applicationNumber">
+
+            अर्ज क्रमांक
+
+        </label>
+
+
+        <input
+            type="text"
+            id="applicationNumber"
+            placeholder="तुमचा अर्ज क्रमांक टाका"
+            autocomplete="off"
+        >
+
+
+
+        <button
+            type="button"
+            class="feature-btn"
+            onclick="trackApplication()"
+        >
+
+            🔍 अर्जाची स्थिती तपासा
+
+        </button>
+
+
+
+        <div
+            id="applicationTrackerResult"
+            style="margin-top:20px;"
+        ></div>
+
+
+
+        <div
+            id="myApplications"
+            style="margin-top:25px;"
+        ></div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PROFILE ANALYSIS
+===================================================== -->
+
+<section
+    class="dashboard-section"
+    id="profileAnalysisSection"
+    style="display:none;"
+>
+
+
+    <div class="section-title">
+
+        <div>
+
+            <h2>
+                🧠 AI प्रोफाइल विश्लेषण
+            </h2>
+
+            <p>
+                AI ने तुमच्या प्रोफाइलचे केलेले विश्लेषण.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div
+        id="profileAnalysisResult"
+        class="result-card"
+    ></div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     RECOMMENDED SCHEMES
+===================================================== -->
+
+<section
+    class="dashboard-section"
+    id="recommendedSection"
+    style="display:none;"
+>
+
+
+    <div class="section-title">
+
+        <div>
+
+            <h2>
+                🎯 तुमच्यासाठी योजना
+            </h2>
+
+            <p>
+                तुमच्या प्रोफाइलनुसार AI ने शोधलेल्या योजना.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div
+        id="recommendedSchemes"
+        class="scheme-grid"
+    ></div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     LIFE SCHEME
+===================================================== -->
+
+<section
+    class="dashboard-section"
+    id="lifeSchemeSection"
+    style="display:none;"
+>
+
+
+    <div class="section-title">
+
+        <div>
+
+            <h2>
+                🧠 AI Life Scheme
+            </h2>
+
+            <p>
+
+                तुमच्या आयुष्यात सध्या घडत असलेल्या
+                घटनेनुसार सरकारी योजना शोधा.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="result-card">
+
+
+        <h3>
+            तुमच्या आयुष्यात सध्या काय घडत आहे?
+        </h3>
+
+
+        <p>
+
+            तुमच्याशी संबंधित परिस्थिती निवडा.
+            AI त्या परिस्थितीशी संबंधित सरकारी योजना शोधेल.
+
+        </p>
+
+
+
+        <div class="life-event-grid">
+
+
+            <button
+                type="button"
+                onclick="selectLifeEvent('शिक्षण किंवा कॉलेजमध्ये प्रवेश')"
+            >
+                🎓
+                <span>शिक्षण / कॉलेज प्रवेश</span>
+            </button>
+
+
+            <button
+                type="button"
+                onclick="selectLifeEvent('नोकरी शोधत आहे')"
+            >
+                💼
+                <span>नोकरी शोधत आहे</span>
+            </button>
+
+
+            <button
+                type="button"
+                onclick="selectLifeEvent('नवीन व्यवसाय सुरू करायचा आहे')"
+            >
+                🏢
+                <span>व्यवसाय सुरू करायचा आहे</span>
+            </button>
+
+
+            <button
+                type="button"
+                onclick="selectLifeEvent('विवाह')"
+            >
+                💍
+                <span>विवाह</span>
+            </button>
+
+
+            <button
+                type="button"
+                onclick="selectLifeEvent('मुलाचा जन्म')"
+            >
+                👶
+                <span>मुलाचा जन्म</span>
+            </button>
+
+
+            <button
+                type="button"
+                onclick="selectLifeEvent('घर बांधायचे किंवा घ्यायचे आहे')"
+            >
+                🏠
+                <span>घराची गरज</span>
+            </button>
+
+
+            <button
+                type="button"
+                onclick="selectLifeEvent('शेतीशी संबंधित गरज')"
+            >
+                🌾
+                <span>शेतीची गरज</span>
+            </button>
+
+
+            <button
+                type="button"
+                onclick="selectLifeEvent('आरोग्य किंवा उपचाराची गरज')"
+            >
+                🏥
+                <span>आरोग्य / उपचार</span>
+            </button>
+
+
+            <button
+                type="button"
+                onclick="selectLifeEvent('वृद्ध व्यक्तीची गरज')"
+            >
+                👴
+                <span>वृद्ध व्यक्ती</span>
+            </button>
+
+
+            <button
+                type="button"
+                onclick="selectLifeEvent('दिव्यांग व्यक्तीसाठी मदत')"
+            >
+                ♿
+                <span>दिव्यांग व्यक्तीसाठी मदत</span>
+            </button>
+
+
+            <button
+                type="button"
+                onclick="selectLifeEvent('आर्थिक अडचण')"
+            >
+                💰
+                <span>आर्थिक अडचण</span>
+            </button>
+
+
+            <button
+                type="button"
+                onclick="selectLifeEvent('इतर')"
+            >
+                📋
+                <span>इतर</span>
+            </button>
+
+
+        </div>
+
+
+
+        <div
+            id="selectedLifeEvent"
+            style="margin-top:20px;"
+        ></div>
+
+
+
+        <div
+            id="lifeSchemeLoading"
+            style="display:none; margin-top:20px;"
+        >
+
+            🤖 AI तुमच्यासाठी संबंधित योजना शोधत आहे...
+
+        </div>
+
+
+
+        <div
+            id="lifeSchemeResult"
+            style="margin-top:20px;"
+        ></div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FAKE SCHEME DETECTOR
+===================================================== -->
+
+<section
+    class="dashboard-section"
+    id="fakeSchemeSection"
+    style="display:none;"
+>
+
+
+    <div class="section-title">
+
+        <div>
+
+            <h2>
+                🛡️ Fake Scheme Detector
+            </h2>
+
+            <p>
+
+                सरकारी योजनेची माहिती खरी आहे की संशयास्पद
+                ते तपासा.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="result-card">
+
+
+        <h3>
+            योजनेची माहिती येथे टाका
+        </h3>
+
+
+        <p>
+
+            WhatsApp, SMS किंवा सोशल मीडियावर मिळालेली
+            योजनेची माहिती येथे paste करून तपासा.
+
+        </p>
+
+
+
+        <textarea
+            id="fakeSchemeText"
+            rows="7"
+            placeholder="योजनेचे नाव, मिळणारा लाभ, अर्जाची माहिती किंवा आलेला संदेश येथे टाका..."
+        ></textarea>
+
+
+
+        <input
+            type="url"
+            id="fakeSchemeUrl"
+            placeholder="Website link असल्यास येथे टाका"
+        >
+
+
+
+        <!-- Screenshot Upload -->
+
+        <div class="fake-scheme-screenshot">
+
+
+            <label for="fakeSchemeScreenshot">
+
+                📸 योजनेचा Screenshot Upload करा
+
+            </label>
+
+
+            <input
+                type="file"
+                id="fakeSchemeScreenshot"
+                accept="image/png,image/jpeg,image/jpg"
+            >
+
+
+            <small>
+
+                PNG किंवा JPG • कमाल 10 MB
+
+            </small>
+
+
+        </div>
+
+
+
+        <button
+            type="button"
+            class="feature-btn"
+            onclick="checkFakeScheme()"
+        >
+
+            🛡️ माहिती तपासा
+
+        </button>
+
+
+
+        <div
+            id="fakeSchemeResult"
+            style="margin-top:20px;"
+        ></div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     COMPARISON
+===================================================== -->
+
+<section
+    class="dashboard-section"
+    id="comparisonSection"
+    style="display:none;"
+>
+
+
+    <div class="section-title">
+
+        <div>
+
+            <h2>
+                ⚖️ योजना तुलना
+            </h2>
+
+            <p>
+                दोन सरकारी योजनांची तुलना करा.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div
+        id="comparisonContent"
+        class="result-card"
+    ></div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     BENEFIT OPTIMIZER
+===================================================== -->
+
+<section
+    class="dashboard-section"
+    id="benefitOptimizerSection"
+    style="display:none;"
+>
+
+
+    <div class="section-title">
+
+        <div>
+
+            <h2>
+                💰 Benefit Optimizer
+            </h2>
+
+            <p>
+                उपलब्ध योजनांमधून मिळणारे फायदे समजून घ्या.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="result-card">
+
+        <div id="benefitOptimizerContent">
+
+            <!-- Benefit optimizer content JS मधून येईल -->
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     CHATBOT
+===================================================== -->
+
+<div
+    id="chatbot"
+    class="chatbot"
+    style="display:none;"
+>
+
+
+    <div class="chatbot-header">
+
+
+        <div>
+
+            <strong>
+                🤖 जनसारथी AI
+            </strong>
+
+            <small>
+                योजना सहाय्यक
+            </small>
+
+        </div>
+
+
+
+        <button
+            type="button"
+            onclick="closeChatbot()"
+        >
+            ✕
+        </button>
+
+
+    </div>
+
+
+
+    <div
+        id="chatMessages"
+        class="chat-messages"
+    >
+
+
+        <div class="bot-message">
+
+            नमस्कार! 👋
+
+            <br>
+
+            सरकारी योजनांबाबत तुम्हाला काय माहिती हवी आहे?
+
+        </div>
+
+
+
+        <div
+            class="chat-suggestions"
+            id="chatSuggestions"
+        >
+
+
+            <button
+                type="button"
+                onclick="sendChatSuggestion('माझ्यासाठी योग्य सरकारी योजना कोणत्या आहेत?')"
+            >
+
+                💡 माझ्यासाठी योग्य सरकारी योजना
+
+            </button>
+
+
+
+            <button
+                type="button"
+                onclick="sendChatSuggestion('माझ्या प्रोफाइलनुसार कोणत्या योजना उपलब्ध आहेत?')"
+            >
+
+                👤 माझ्या प्रोफाइलनुसार योजना
+
+            </button>
+
+
+
+            <button
+                type="button"
+                onclick="sendChatSuggestion('शेतकऱ्यांसाठी सरकारी योजना कोणत्या आहेत?')"
+            >
+
+                🌾 शेतकऱ्यांसाठी योजना
+
+            </button>
+
+
+
+            <button
+                type="button"
+                onclick="sendChatSuggestion('विद्यार्थ्यांसाठी शिष्यवृत्ती योजना कोणत्या आहेत?')"
+            >
+
+                🎓 विद्यार्थ्यांसाठी शिष्यवृत्ती
+
+            </button>
+
+
+
+            <button
+                type="button"
+                onclick="sendChatSuggestion('महिलांसाठी सरकारी योजना कोणत्या आहेत?')"
+            >
+
+                👩 महिलांसाठी योजना
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+
+    <div class="chat-input-area">
+
+
+        <button
+            type="button"
+            id="voiceButton"
+            class="voice-button"
+            onclick="startVoiceInput()"
+            title="बोलून प्रश्न विचारा"
+        >
+            🎤
+        </button>
+
+
+
+        <input
+            type="text"
+            id="chatInput"
+            placeholder="तुमचा प्रश्न लिहा किंवा 🎤 दाबून बोला..."
+            autocomplete="off"
+        >
+
+
+
+        <button
+            type="button"
+            onclick="sendChatMessage()"
+        >
+            ➤
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     FLOATING AI CHATBOT BUTTON
+===================================================== -->
+
+<button
+    type="button"
+    class="ai-chatbot-bubble"
+    onclick="openChatbot()"
+    title="जनसारथी AI"
+>
+    🤖
+</button>
+
+
+
+<!-- =====================================================
+     LOGOUT MODAL
+===================================================== -->
+
+<div
+    id="logoutModal"
+    class="modal-overlay"
+    style="display:none;"
+>
+
+
+    <div class="modal-box">
+
+
+        <h3>
+            Logout करायचे आहे?
+        </h3>
+
+
+        <p>
+            तुम्हाला जनसारथीमधून बाहेर पडायचे आहे का?
+        </p>
+
+
+
+        <div class="modal-actions">
+
+
+            <button
+                type="button"
+                onclick="closeLogoutModal()"
+            >
+                Cancel
+            </button>
+
+
+
+            <button
+                type="button"
+                onclick="logoutUser()"
+            >
+                Logout
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="dashboard-footer">
+
+
+    <p>
+
+        © 2026 जनसारथी |
+        योग्य योजना, योग्य माहिती, योग्य वेळी.
+
+    </p>
+
+
+    <p>
+
+        AI द्वारे दिलेली माहिती मार्गदर्शक स्वरूपाची आहे.
+        अंतिम पात्रता संबंधित सरकारी विभागाच्या नियमांनुसार ठरते.
+
+    </p>
+
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="dashboard.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>
+        नवीन अपडेट्स | जनसारथी
+    </title>
+    <link
+        rel="stylesheet"
+        href="updates.css">
+</head>
+<body>
+    <header class="updates-navbar">
+        <div class="updates-nav-container">
+            <a href="index.html" class="updates-brand">
+                <img
+                    src="logo1.png"
+                    alt="जनसारथी">
+                <div>
+                    <h2>जनसारथी</h2>
+                    <small>
+                        सरकारी योजनांचा विश्वासू सारथी
+                    </small>
+                </div>
+            </a>
+            <a
+                href="index.html"
+                class="back-home">
+                ← मुख्यपृष्ठ
+            </a>
+        </div>
+    </header>
+    <section class="updates-hero">
+        <div class="updates-hero-content">
+            <span>
+                🔔 ताज्या घडामोडी
+            </span>
+            <h1>
+                नवीन सरकारी अपडेट्स
+            </h1>
+            <p>
+                सरकारी योजना, घोषणा, अर्ज, शिष्यवृत्ती
+                आणि महत्त्वाच्या सरकारी माहितीचे नवीनतम अपडेट्स.
+            </p>
+        </div>
+    </section>
+    <main class="updates-main">
+        <div class="updates-controls">
+            <div class="update-search">
+                <span>🔍</span>
+                <input
+                    type="text"
+                    id="updateSearch"
+                    placeholder="अपडेट शोधा..."
+                    autocomplete="off">
+            </div>
+            <div class="update-filter">
+                <select id="updateFilter">
+                    <option value="सर्व">
+                        सर्व अपडेट्स
+                    </option>
+                    <option value="योजना">
+                        योजना
+                    </option>
+                    <option value="शिष्यवृत्ती">
+                        शिष्यवृत्ती
+                    </option>
+                    <option value="अर्ज">
+                        अर्ज
+                    </option>
+                    <option value="रोजगार">
+                        रोजगार
+                    </option>
+                    <option value="परीक्षा">
+                        परीक्षा
+                    </option>
+                    <option value="शासन निर्णय">
+                        शासन निर्णय
+                    </option>
+                    <option value="इतर">
+                        इतर
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="updates-top">
+            <h2>
+                सर्व अपडेट्स
+            </h2>
+            <span id="updateCount">
+                अपडेट्स लोड होत आहेत...
+            </span>
+        </div>
+        <div
+            id="allUpdatesContainer"
+            class="all-updates">
+            <div class="updates-loading">
+                <div class="spinner"></div>
+                <p>
+                    अपडेट्स लोड होत आहेत...
+                </p>
+            </div>
+        </div>
+        <div
+            id="noUpdates"
+            class="no-updates"
+            style="display:none;">
+            <div>
+                🔎
+            </div>
+            <h3>
+                कोणतेही अपडेट सापडले नाही
+            </h3>
+            <p>
+                दुसरा शब्द किंवा category वापरून पहा.
+            </p>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img
+                    src="logo1.png"
+                    alt="जनसारथी">
+                <div>
+                    <h3>
+                        जनसारथी
+                    </h3>
+                    <p>
+                        योग्य योजना, योग्य माहिती,
+                        योग्य वेळी.
+                    </p>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">
+                    मुख्यपृष्ठ
+                </a>
+                <a href="index.html#categories">
+                    योजना
+                </a>
+                <a href="index.html#schemes">
+                    लोकप्रिय योजना
+                </a>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 जनसारथी. सर्व हक्क राखीव.
+        </div>
+    </footer>
+    <script src="updates.js"></script>
+</body>
+</html>

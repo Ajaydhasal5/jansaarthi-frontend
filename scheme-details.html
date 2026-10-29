@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>योजना माहिती | जनसारथी</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="brand">
+            <img
+                src="logo1.png"
+                alt="जनसारथी">
+            <div>
+                <h2>जनसारथी</h2>
+                <small>
+                    सरकारी योजनांचा विश्वासू सारथी
+                </small>
+            </div>
+        </a>
+        <nav id="navMenu">
+            <a href="index.html">
+                मुख्यपृष्ठ
+            </a>
+           
+        </nav>
+        <button
+            class="menu-button"
+            onclick="toggleDetailsMenu()">
+            ☰
+        </button>
+    </div>
+</header>
+<div class="breadcrumb">
+    <div>
+        <a href="index.html">
+            मुख्यपृष्ठ
+        </a>
+        <span>›</span>
+        <span>
+            योजना माहिती
+        </span>
+    </div>
+</div>
+<main class="details-page">
+    <section class="scheme-header">
+        <div class="scheme-header-icon">
+            🌾
+        </div>
+        <div>
+            <span
+                class="details-category"
+                id="schemeCategory">
+                शेतकरी
+            </span>
+            <h1 id="schemeTitle">
+                प्रधानमंत्री किसान योजना
+            </h1>
+            <p id="schemeShortDescription">
+                योजनेची माहिती येथे उपलब्ध आहे.
+            </p>
+        </div>
+    </section>
+    <div class="last-update">
+        🔄
+        <span>
+            शेवटचे अपडेट:
+        </span>
+        <strong id="lastUpdated">
+            05 सप्टेंबर 2026
+        </strong>
+    </div>
+    <div class="details-layout">
+        <div class="details-main">
+            <section class="detail-box">
+                <h2>
+                    📋 योजनेबद्दल
+                </h2>
+                <p id="schemeAbout">
+                    या योजनेची सविस्तर माहिती
+                    येथे उपलब्ध होईल.
+                </p>
+            </section>
+            <section class="detail-box">
+                <h2>
+                    🎁 योजनेचे लाभ
+                </h2>
+                <ul id="benefitsList">
+                </ul>
+            </section>
+            <section class="detail-box">
+                <h2>
+                    ✅ पात्रता
+                </h2>
+                <ul id="eligibilityList">
+                </ul>
+            </section>
+            <section class="detail-box">
+                <h2>
+                    📄 आवश्यक कागदपत्रे
+                </h2>
+                <ul id="documentsList">
+                </ul>
+            </section>
+            <section class="detail-box">
+                <h2>
+                    📝 अर्ज प्रक्रिया
+                </h2>
+                <div
+                    class="process-list"
+                    id="processList">
+                </div>
+            </section>
+        </div>
+        <aside class="details-sidebar">
+            <div class="apply-box">
+                <h3>
+                    अर्ज / अधिकृत माहिती
+                </h3>
+                <p>
+                    अर्ज करण्यापूर्वी अधिकृत
+                    सरकारी स्रोतावरील माहिती तपासा.
+                </p>
+                <a
+                    href="#"
+                    id="officialLink"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    अधिकृत वेबसाइट →
+                </a>
+            </div>
+            <div class="quick-info">
+                <h3>
+                    झटपट माहिती
+                </h3>
+                <div>
+                    <span>
+                        विभाग
+                    </span>
+                    <strong id="department">
+                        —
+                    </strong>
+                </div>
+                <div>
+                    <span>
+                        राज्य
+                    </span>
+                    <strong id="state">
+                        —
+                    </strong>
+                </div>
+                <div>
+                    <span>
+                        लाभार्थी
+                    </span>
+                    <strong id="beneficiary">
+                        —
+                    </strong>
+                </div>
+                <div>
+                    <span>
+                        प्रकार
+                    </span>
+                    <strong id="schemeType">
+                        —
+                    </strong>
+                </div>
+            </div>
+            <div class="help-box">
+                <div>
+                    💡
+                </div>
+                <h3>
+                    महत्त्वाची सूचना
+                </h3>
+                <p>
+                जनसारथीवर शासकीय योजनांची माहिती कृत्रिम बुद्धिमत्तेच्या (AI) माध्यमातून उपलब्ध करून दिली जाते.  
+योजनेची पात्रता, कागदपत्रे व अर्ज प्रक्रिया यांची अद्ययावत माहिती संबंधित अधिकृत शासकीय संकेतस्थळावर तपासावी.
+
+                </p>
+            </div>
+        </aside>
+    </div>
+</main>
+<footer>
+    <div class="footer-container">
+        <div class="footer-brand">
+            <img
+                src="logo1.png"
+                alt="जनसारथी">
+            <h2>
+                जनसारथी
+            </h2>
+            <p>
+                योग्य योजना, योग्य माहिती,
+                योग्य वेळी.
+            </p>
+        </div>
+        <div>
+            <a href="index.html">
+                मुख्यपृष्ठ
+            </a>
+            <a href="index.html#categories">
+                योजना
+            </a>
+            <a href="index.html#latest">
+                नवीन अपडेट
+            </a>
+        </div>
+        <div>
+            <h3>
+                महत्त्वाचे
+            </h3>
+            <a href="#">
+                गोपनीयता धोरण
+            </a>
+            <a href="#">
+                अटी व शर्ती
+            </a>
+            <a href="#">
+                अस्वीकरण
+            </a>
+        </div>
+        <div>
+            <h3>
+                जनसारथी
+            </h3>
+            <p>
+                सरकारी योजनांची माहिती
+                नागरिकांपर्यंत सोप्या पद्धतीने
+                पोहोचवण्यासाठी तयार केलेले
+                माहिती पोर्टल.
+            </p>
+        </div>
+    </div>
+    <div class="copyright">
+        © 2026 जनसारथी.
+       All rights reserved. | 
+       
+    </div>
+</footer>
+<script src="details.js"></script>
+</body>
+</html>

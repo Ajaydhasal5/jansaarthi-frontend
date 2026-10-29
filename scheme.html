@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>योजना शोधा | जनसारथी</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand">
+                <img src="logo1.png" alt="जनसारथी">
+                <div>
+                    <h2>जनसारथी</h2>
+                    <small>सरकारी योजनांचा विश्वासू सारथी</small>
+                </div>
+            </a>
+
+            <div class="header-search">
+                <input type="text" id="schemeSearchInput" placeholder="योजना शोधा..." autocomplete="off">
+                <button type="button" onclick="searchSchemes()">🔍</button>
+            </div>
+            <nav id="navMenu">
+                <a href="index.html" class="login-btn">मुख्यपृष्ठ</a>
+                <a href="login.html" class="login-btn">प्रवेश करा</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="schemes-page-header">
+        <div>
+            <span class="section-tag">सरकारी योजना</span>
+            <h1>तुमच्यासाठी योग्य योजना शोधा</h1>
+            <p>केंद्र व राज्य सरकारच्या योजनांची माहिती एका ठिकाणी मिळवा.</p>
+        </div>
+    </section>
+
+    <section class="schemes-filter-section">
+
+        <div class="scheme-categories">
+
+            <button
+                type="button"
+                class="scheme-category active"
+                onclick="filterSchemeCategory('all', this)">
+
+                🔎 सर्व योजना
+
+            </button>
+
+            <button
+                type="button"
+                class="scheme-category"
+                onclick="filterSchemeCategory('शेतकरी', this)">
+
+                🌾 शेतकरी
+
+            </button>
+
+            <button
+                type="button"
+                class="scheme-category"
+                onclick="filterSchemeCategory('विद्यार्थी', this)">
+
+                🎓 विद्यार्थी
+
+            </button>
+
+            <button
+                type="button"
+                class="scheme-category"
+                onclick="filterSchemeCategory('महिला', this)">
+
+                👩 महिला
+
+            </button>
+
+            <button
+                type="button"
+                class="scheme-category"
+                onclick="filterSchemeCategory('रोजगार', this)">
+
+                💼 रोजगार
+
+            </button>
+
+            <button
+                type="button"
+                class="scheme-category"
+                onclick="filterSchemeCategory('आरोग्य', this)">
+
+                🏥 आरोग्य
+
+            </button>
+
+            <button
+                type="button"
+                class="scheme-category"
+                onclick="filterSchemeCategory('गृहनिर्माण', this)">
+
+                🏠 गृहनिर्माण
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <section class="schemes-section">
+        <div class="section-heading">
+            <div>
+                <span class="section-tag">उपलब्ध योजना</span>
+                <h2>सर्व सरकारी योजना</h2>
+            </div>
+            <span id="schemeCount">योजना शोधत आहे...</span>
+        </div>
+
+        <div id="schemeLoading" class="scheme-loading">योजना माहिती लोड होत आहे...</div>
+        <div id="schemeGrid" class="scheme-grid"></div>
+
+        <div id="noSchemeResult" class="no-scheme-result" style="display:none;">
+            <h3>😕 योजना सापडली नाही</h3>
+            <p>कृपया दुसरा शब्द किंवा category शोधा.</p>
+        </div>
+    </section>
+
+    <script>
+        const SCHEMES_API = "https://jansaarthi-backend-production-d805.up.railway.app/api/schemes";
+        let allSchemes = [];
+        const categoryAliases = {
+            "शेतकरी": ["शेतकरी", "कृषी", "शेती", "farmer", "agriculture", "agricultural", "किसान"],
+            "विद्यार्थी": ["विद्यार्थी", "शिक्षण", "शिष्यवृत्ती", "student", "education", "scholarship"],
+            "महिला": ["महिला", "women", "woman", "girl"],
+            "रोजगार": ["रोजगार", "कौशल्य", "employment", "job", "skill", "livelihood"],
+            "आरोग्य": ["आरोग्य", "health", "medical", "आरोग्यसेवा"],
+            "गृहनिर्माण": ["गृहनिर्माण", "घरकुल", "housing", "home", "आवास"]
+        };
+        const requestedCategory = new URLSearchParams(window.location.search).get("category");
+        let selectedCategory = requestedCategory && categoryAliases[requestedCategory] ? requestedCategory : "all";
+
+        async function loadSchemes() {
+            const loading = document.getElementById("schemeLoading");
+
+            try {
+                const response = await fetch(SCHEMES_API);
+
+                if (!response.ok) {
+                    throw new Error("Schemes API failed");
+                }
+
+                allSchemes = await response.json();
+                if (selectedCategory !== "all") {
+                    const button = [...document.querySelectorAll(".scheme-category")]
+                        .find((item) => item.textContent.includes(selectedCategory));
+                    if (button) button.classList.add("active");
+                }
+                searchSchemes();
+            } catch (error) {
+                console.error("Scheme loading error:", error);
+                loading.textContent = "योजना माहिती लोड करता आली नाही.";
+            } finally {
+                loading.style.display = "none";
+            }
+        }
+
+        function renderSchemes(schemes) {
+            const grid = document.getElementById("schemeGrid");
+            const count = document.getElementById("schemeCount");
+            const noResult = document.getElementById("noSchemeResult");
+
+            grid.innerHTML = "";
+
+            if (!schemes.length) {
+                noResult.style.display = "block";
+                count.textContent = "0 योजना";
+                return;
+            }
+
+            noResult.style.display = "none";
+            count.textContent = `${schemes.length} योजना`;
+
+            schemes.forEach(function (scheme) {
+                const card = document.createElement("div");
+                card.className = "scheme-card";
+
+                card.innerHTML = `
+                    <div class="scheme-card-content">
+                        <span class="scheme-category-badge">${scheme.category || "सरकारी योजना"}</span>
+                        <h3>${scheme.name || "योजना"}</h3>
+                        <p>${scheme.shortDescription || "या योजनेची अधिक माहिती पाहण्यासाठी क्लिक करा."}</p>
+                        <button type="button" class="scheme-view-btn" onclick="openSchemeDetails(${scheme.id})">अधिक माहिती →</button>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        function searchSchemes() {
+            const input = document.getElementById("schemeSearchInput");
+            const query = input.value.trim().toLowerCase();
+
+            let filtered = allSchemes.filter(function (scheme) {
+                const text = `${scheme.name || ""} ${scheme.category || ""} ${scheme.shortDescription || ""} ${scheme.about || ""}`.toLowerCase();
+                return text.includes(query);
+            });
+
+            if (selectedCategory !== "all") {
+                const terms = categoryAliases[selectedCategory] || [selectedCategory];
+                filtered = filtered.filter(function (scheme) {
+                    const categoryText = String(scheme.category || "").toLocaleLowerCase();
+                    return terms.some((term) => categoryText.includes(term.toLocaleLowerCase()));
+                });
+            }
+
+            renderSchemes(filtered);
+        }
+
+        function filterSchemeCategory(category, button) {
+            selectedCategory = category;
+            const url = new URL(window.location.href);
+            if (category === "all") url.searchParams.delete("category");
+            else url.searchParams.set("category", category);
+            window.history.replaceState({}, "", url);
+
+            document.querySelectorAll(".scheme-category").forEach(function (btn) {
+                btn.classList.remove("active");
+            });
+
+            button.classList.add("active");
+            searchSchemes();
+        }
+
+        document.getElementById("schemeSearchInput").addEventListener("input", searchSchemes);
+        document.getElementById("schemeSearchInput").addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                searchSchemes();
+            }
+        });
+
+        function openSchemeDetails(schemeId) {
+            window.location.href = `scheme-details.html?id=${schemeId}`;
+        }
+
+        loadSchemes();
+    </script>
+
+    <footer id="about">
+
+    <div class="footer-container">
+
+
+        <div class="footer-brand">
+
+            <img
+                src="logo1.png"
+                alt="जनसारथी">
+
+            <h2>
+                जनसारथी
+            </h2>
+
+            <p>
+                योग्य योजना, योग्य माहिती,
+                योग्य वेळी.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <a href="#home">
+                मुख्यपृष्ठ
+            </a>
+
+            <a href="#categories">
+                योजना
+            </a>
+
+            <a href="#schemes">
+                लोकप्रिय योजना
+            </a>
+
+            <a href="#latest">
+                नवीन अपडेट
+            </a>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                महत्त्वाचे
+            </h3>
+
+            <a href="privacy.html">
+                Privacy Policy
+            </a>
+
+            <a href="terms.html">
+                Terms & Conditions
+            </a>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                जनसारथी
+            </h3>
+
+            <p>
+                सरकारी योजनांची माहिती
+                नागरिकांपर्यंत सोप्या पद्धतीने
+                पोहोचवण्यासाठी तयार केलेले
+                माहिती पोर्टल.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 जनसारथी. All Rights Reserved. |
+
+    </div>
+
+</footer>
+
+</div>
+</body>
+
+</html>

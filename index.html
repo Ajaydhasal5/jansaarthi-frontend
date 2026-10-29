@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>जनसारथी | सरकारी योजनांची माहिती</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div id="website">
+
+<header class="navbar">
+
+    <div class="nav-container">
+        <a href="#home" class="brand">
+
+            <img
+                src="logo1.png"
+                alt="जनसारथी">
+
+            <div>
+                <h2>जनसारथी</h2>
+
+                <small>
+                    सरकारी योजनांचा विश्वासू सारथी
+                </small>
+            </div>
+
+        </a>
+        
+<div class="header-search" onclick="openSchemesPage()">
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="योजना शोधा..."
+        autocomplete="off"
+        readonly
+    >
+    <button type="button">🔍</button>
+</div>
+
+        <nav id="navMenu">
+
+            <a
+                href="login.html"
+                class="login-btn">
+                प्रवेश करा
+            </a>
+
+<button
+    type="button"
+    id="notificationButton"
+    class="notification-button"
+    onclick="toggleNotifications()">
+
+    🔔
+
+    <span
+        id="notificationCount"
+        class="notification-count">
+        0
+    </span>
+
+</button>
+<div
+    id="notificationBox"
+    class="notification-box">
+
+    <div class="notification-header">
+        <strong>🔔 सूचना</strong>
+
+        <button
+            type="button"
+            onclick="toggleNotifications()">
+            ✕
+        </button>
+    </div>
+
+    <div
+        id="notificationList"
+        class="notification-list">
+
+        <p class="no-notifications">
+            सध्या कोणतीही नवीन सूचना नाही.
+        </p>
+
+    </div>
+
+</div>
+        </nav>
+
+        <button
+            class="menu-button"
+            onclick="toggleMenu()">
+            ☰
+        </button>
+
+    </div>
+
+</header>
+<div class="ai-disclaimer-bar">
+    <div class="ai-disclaimer-track">
+        ⚠️ सूचना: जनसारथीमध्ये सरकारी योजनांची माहिती AI तंत्रज्ञानाच्या सहाय्याने
+        शोधली व सादर केली जाते. माहितीमध्ये त्रुटी किंवा बदल असू शकतात.
+        अर्ज करण्यापूर्वी संबंधित अधिकृत सरकारी वेबसाइटवरील माहिती तपासा.
+    </div>
+</div>
+
+<section
+    class="hero"
+    id="home">
+
+    <div class="image-slider">
+
+        <div class="slide active">
+
+            <img
+                src="img1.jpeg"
+                alt="सरकारी योजना">
+
+        </div>
+
+        <div class="slide">
+
+            <img
+                src="img2.jpeg"
+                alt="सरकारी योजना">
+
+        </div>
+
+        <div class="slide">
+
+            <img
+                src="img3.jpeg"
+                alt="सरकारी योजना">
+
+        </div>
+<div class="slide">
+
+            <img
+                src="img4.jpeg"
+                alt="सरकारी योजना">
+
+        </div>
+        <div class="slide">
+
+            <img
+                src="img5.jpeg"
+                alt="सरकारी योजना">
+
+        </div>
+
+        <button
+            class="slider-prev"
+            type="button">
+            ❮
+        </button>
+
+        <button
+            class="slider-next"
+            type="button">
+            ❯
+        </button>
+
+
+        <div class="slider-dots">
+
+            <button
+                class="slider-dot active"
+                type="button">
+            </button>
+
+            <button
+                class="slider-dot"
+                type="button">
+            </button>
+
+            <button
+                class="slider-dot"
+                type="button">
+            </button>
+
+            <button
+                class="slider-dot"
+                type="button">
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="stats">
+
+    <div class="stat">
+
+        <div>
+            🏛️
+        </div>
+
+        <section>
+
+            <h2 id="totalSchemeCount">
+                0+
+            </h2>
+
+            <p>
+                सरकारी योजना
+            </p>
+
+        </section>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div>
+            👥
+        </div>
+
+        <section>
+
+            <h2 id="totalUserCount">
+                0+
+            </h2>
+
+            <p>
+                नोंदणीकृत वापरकर्ते
+            </p>
+
+        </section>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div>
+            📄
+        </div>
+
+        <section>
+
+            <h2 id="totalUpdateCount">
+                0+
+            </h2>
+
+            <p>
+                माहिती अपडेट्स
+            </p>
+
+        </section>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div>
+            🔄
+        </div>
+
+        <section>
+
+            <h2>
+                24×7
+            </h2>
+
+            <p>
+                माहिती उपलब्ध
+            </p>
+
+        </section>
+
+    </div>
+
+</section>
+
+<section class="ai-login-prompt" aria-labelledby="ai-login-title">
+    <article class="ai-login-card">
+        <div class="ai-login-icon" aria-hidden="true">✦</div>
+        <div class="ai-login-copy">
+            <span class="ai-login-eyebrow">जनसारथी AI</span>
+            <h2 id="ai-login-title">तुमच्यासाठी योग्य योजना शोधा</h2>
+            <p>AI सुविधा वापरा आणि तुमच्या माहितीनुसार वैयक्तिक योजना शिफारशी मिळवा.</p>
+        </div>
+        <a class="ai-login-button" href="login.html">Login करा <span aria-hidden="true">→</span></a>
+    </article>
+</section>
+
+<section
+    class="section"
+    id="categories">
+
+    <div class="heading">
+
+        <span>
+            योजना श्रेणी
+        </span>
+
+        <h2>
+            तुमच्या गरजेनुसार योजना शोधा
+        </h2>
+
+        <p>
+            तुमच्या गरजेनुसार सरकारी योजनांची
+            माहिती मिळवा.
+        </p>
+
+    </div>
+
+
+    <div class="category-grid">
+        <div
+            class="category"
+            onclick="quickSearch('शेतकरी')">
+
+            <div class="category-icon">
+                🌾
+            </div>
+
+            <h3>
+                शेतकरी
+            </h3>
+
+            <p>
+                शेती, पीक, अनुदान आणि कृषी योजना
+            </p>
+
+            <a href="scheme.html">
+                योजना पहा →
+            </a>
+
+        </div>
+
+        <div
+            class="category"
+            onclick="quickSearch('विद्यार्थी')">
+
+            <div class="category-icon">
+                🎓
+            </div>
+
+            <h3>
+                विद्यार्थी
+            </h3>
+
+            <p>
+                शिष्यवृत्ती, शिक्षण आणि विद्यार्थी योजना
+            </p>
+
+            <a href="scheme.html">
+                योजना पहा →
+            </a>
+
+        </div>
+
+        <div
+            class="category"
+            onclick="quickSearch('महिला')">
+
+            <div class="category-icon">
+                👩
+            </div>
+
+            <h3>
+                महिला
+            </h3>
+
+            <p>
+                महिला सक्षमीकरण आणि कल्याण योजना
+            </p>
+
+            <a href="scheme.html">
+                योजना पहा →
+            </a>
+
+        </div>
+        <div
+            class="category"
+            onclick="quickSearch('रोजगार')">
+
+            <div class="category-icon">
+                💼
+            </div>
+
+            <h3>
+                रोजगार
+            </h3>
+
+            <p>
+                रोजगार, कौशल्य आणि प्रशिक्षण योजना
+            </p>
+
+            <a href="scheme.html">
+                योजना पहा →
+            </a>
+
+        </div>
+
+        <div
+            class="category"
+            onclick="quickSearch('आरोग्य')">
+
+            <div class="category-icon">
+                🏥
+            </div>
+
+            <h3>
+                आरोग्य
+            </h3>
+
+            <p>
+                आरोग्य सेवा आणि सरकारी योजना
+            </p>
+
+            <a href="scheme.html">
+                योजना पहा →
+            </a>
+
+        </div>
+
+        <div
+            class="category"
+            onclick="quickSearch('गृहनिर्माण')">
+
+            <div class="category-icon">
+                🏠
+            </div>
+
+            <h3>
+                गृहनिर्माण
+            </h3>
+
+            <p>
+                घरकुल आणि गृहनिर्माण योजना
+            </p>
+
+            <a href="scheme.html">
+                योजना पहा →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="jansaarthi-process" id="schemes">
+
+    <div class="heading">
+
+        <span>
+            जनसारथी कसे काम करते?
+        </span>
+
+        <h2>
+            योग्य योजना शोधण्याची सोपी प्रक्रिया
+        </h2>
+
+        <p>
+            काही सोप्या चरणांमध्ये तुमच्यासाठी योग्य सरकारी
+            योजनांची माहिती मिळवा.
+        </p>
+
+    </div>
+
+
+    <div class="process-grid" onclick="window.location.href='login.html'">
+
+        <div class="process-card">
+
+            <div class="process-number">
+                01
+            </div>
+
+            <div class="process-icon">
+                👤
+            </div>
+
+            <h3>
+                तुमची माहिती द्या
+            </h3>
+
+            <p>
+                वय, राज्य, श्रेणी आणि उत्पन्न यासारखी
+                मूलभूत माहिती द्या.
+            </p>
+
+        </div>
+
+        <div class="process-card" onclick="window.location.href='login.html'">
+
+            <div class="process-number">
+                02
+            </div>
+
+            <div class="process-icon">
+                🔍
+            </div>
+
+            <h3>
+                योग्य योजना शोधा
+            </h3>
+
+            <p>
+                तुमच्या गरजेनुसार उपलब्ध सरकारी
+                योजनांची माहिती शोधा.
+            </p>
+
+        </div>
+
+        <div class="process-card" onclick="window.location.href='login.html'">
+
+            <div class="process-number">
+                03
+            </div>
+
+            <div class="process-icon">
+                📋
+            </div>
+
+            <h3>
+                पात्रता तपासा
+            </h3>
+
+            <p>
+                योजनेची पात्रता, आवश्यक कागदपत्रे
+                आणि लाभ समजून घ्या.
+            </p>
+
+        </div>
+
+        <div class="process-card" onclick="window.location.href='login.html'">
+
+            <div class="process-number">
+                04
+            </div>
+
+            <div class="process-icon">
+                🔗
+            </div>
+
+            <h3>
+                अधिकृत वेबसाइटवर जा
+            </h3>
+
+            <p>
+                अर्ज करण्यासाठी संबंधित सरकारी
+                अधिकृत वेबसाइटवर जा.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="eligibility">
+
+    <div>
+
+        <span>
+            स्मार्ट सुविधा
+        </span>
+
+        <h2>
+            तुमच्यासाठी कोणत्या योजना आहेत?
+        </h2>
+
+        <p>
+            तुमची मूलभूत माहिती देऊन तुमच्यासाठी
+            उपलब्ध योजनांचा शोध घ्या.
+        </p>
+
+        <button
+            onclick="checkEligibility()">
+
+            माझी पात्रता तपासा →
+
+        </button>
+
+    </div>
+
+
+    <div class="eligibility-visual">
+
+        <div class="person">
+            👨‍💼
+        </div>
+
+        <div class="check c1">
+            ✓ विद्यार्थी
+        </div>
+
+        <div class="check c2">
+            ✓ महाराष्ट्र
+        </div>
+
+        <div class="check c3">
+            ✓ पात्र योजना
+        </div>
+
+    </div>
+
+</section>
+
+<section
+    class="section"
+    id="latest">
+
+    <div class="heading">
+
+        <span>
+            ताज्या घडामोडी
+        </span>
+
+        <h2>
+            नवीन सरकारी अपडेट
+        </h2>
+
+        <p>
+            नवीन योजना, घोषणा आणि महत्त्वाच्या
+            सरकारी अपडेट्स.
+        </p>
+
+    </div>
+
+
+    <div
+        class="updates"
+        id="updatesContainer">
+
+        <div class="no-schemes">
+
+            <h3>
+                Updates लोड होत आहेत...
+            </h3>
+
+        </div>
+
+    </div>
+
+<div class="updates-more-wrapper">
+
+    <button
+        type="button"
+        id="updatesMoreBtn"
+        class="updates-more-btn"
+        onclick="toggleUpdates()">
+
+        Show More ↓
+
+    </button>
+
+</div>
+</section>
+
+<section class="cta">
+
+    <h2>
+        सरकारी योजनांची माहिती मिळवणे
+        आता सोपे झाले.
+    </h2>
+
+    <p>
+        जनसारथीसोबत योग्य योजना शोधा,
+        पात्रता तपासा आणि अधिकृत माहितीकडे जा.
+    </p>
+
+    <button
+        onclick="window.location.href='login.html'">
+
+        योजना शोधा →
+
+    </button>
+
+</section>
+
+<footer id="about">
+
+    <div class="footer-container">
+
+
+        <div class="footer-brand">
+
+            <img
+                src="logo1.png"
+                alt="जनसारथी">
+
+            <h2>
+                जनसारथी
+            </h2>
+
+            <p>
+                योग्य योजना, योग्य माहिती,
+                योग्य वेळी.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <a href="#home">
+                मुख्यपृष्ठ
+            </a>
+
+            <a href="#categories">
+                योजना
+            </a>
+
+            <a href="scheme.html">
+                लोकप्रिय योजना
+            </a>
+
+            <a href="#latest">
+                नवीन अपडेट
+            </a>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                महत्त्वाचे
+            </h3>
+
+            <a href="about.html">
+                About Us
+            </a>
+
+            <a href="contact.html">
+                Contact Us
+            </a>
+
+            <a href="privacy.html">
+                Privacy Policy
+            </a>
+
+            <a href="terms.html">
+                Terms & Conditions
+            </a>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                जनसारथी
+            </h3>
+
+            <p>
+                सरकारी योजनांची माहिती
+                नागरिकांपर्यंत सोप्या पद्धतीने
+                पोहोचवण्यासाठी तयार केलेले
+                माहिती पोर्टल.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 जनसारथी. All Rights Reserved. 
+
+    </div>
+
+</footer>
+
+</div>
+
+
+<div
+    id="eligibilityModal"
+    class="eligibility-modal">
+
+
+    <div class="eligibility-box">
+
+
+        <button
+            class="close-eligibility"
+            onclick="closeEligibility()">
+
+            ×
+
+        </button>
+
+
+        <div class="eligibility-header">
+
+            <div class="eligibility-icon">
+                🎯
+            </div>
+
+            <h2>
+                तुमची पात्रता तपासा
+            </h2>
+
+            <p>
+                तुमची माहिती भरा आणि तुमच्यासाठी योग्य
+                सरकारी योजना शोधा.
+            </p>
+
+        </div>
+
+
+        <form id="eligibilityForm">
+
+
+            <div class="eligibility-grid">
+
+
+                <div class="eligibility-field">
+
+                    <label>
+                        तुमचे वय
+                    </label>
+
+                    <input
+                        type="number"
+                        id="eligibilityAge"
+                        min="1"
+                        max="120"
+                        placeholder="उदा. 25"
+                        required>
+
+                </div>
+
+
+                <div class="eligibility-field">
+
+                    <label>
+                        राज्य
+                    </label>
+
+                    <select
+                        id="eligibilityState"
+                        required>
+
+                        <option value="">
+                            राज्य निवडा
+                        </option>
+
+                        <option value="महाराष्ट्र">
+                            महाराष्ट्र
+                        </option>
+
+                        <option value="भारत">
+                            इतर राज्य
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="eligibility-field">
+
+                    <label>
+                        तुमची श्रेणी
+                    </label>
+
+                    <select
+                        id="eligibilityCategory"
+                        required>
+
+                        <option value="">
+                            श्रेणी निवडा
+                        </option>
+
+                        <option value="शेतकरी">
+                            शेतकरी
+                        </option>
+
+                        <option value="विद्यार्थी">
+                            विद्यार्थी
+                        </option>
+
+                        <option value="महिला">
+                            महिला
+                        </option>
+
+                        <option value="कामगार">
+                            कामगार
+                        </option>
+
+                        <option value="व्यावसायिक">
+                            व्यावसायिक
+                        </option>
+
+                        <option value="ज्येष्ठ नागरिक">
+                            ज्येष्ठ नागरिक
+                        </option>
+
+                        <option value="सर्व">
+                            इतर
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="eligibility-field">
+
+                    <label>
+                        वार्षिक उत्पन्न
+                    </label>
+
+                    <select
+                        id="eligibilityIncome"
+                        required>
+
+                        <option value="">
+                            उत्पन्न निवडा
+                        </option>
+
+                        <option value="100000">
+                            ₹1 लाख पर्यंत
+                        </option>
+
+                        <option value="250000">
+                            ₹1 - ₹2.5 लाख
+                        </option>
+
+                        <option value="500000">
+                            ₹2.5 - ₹5 लाख
+                        </option>
+
+                        <option value="1000000">
+                            ₹5 - ₹10 लाख
+                        </option>
+
+                        <option value="1000001">
+                            ₹10 लाख पेक्षा जास्त
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="eligibility-submit">
+
+                🔍 योग्य योजना शोधा
+
+            </button>
+
+        </form>
+
+
+        <div
+            id="eligibilityResults"
+            class="eligibility-results">
+        </div>
+
+    </div>
+
+</div>
+
+<!-- JanSaarthi Login Popup -->
+<div id="loginPopup" class="login-popup-overlay" style="display: none;">
+    <div class="login-popup">
+        <button
+            type="button"
+            class="popup-close"
+            onclick="closeLoginPopup()"
+            aria-label="Close">
+            &times;
+        </button>
+
+        <div class="popup-icon">🇮🇳</div>
+
+        <h2>जनसारथीमध्ये आपले स्वागत आहे!</h2>
+
+        <p class="popup-tagline">
+            योग्य योजना, योग्य माहिती, योग्य वेळी.
+        </p>
+
+        <p>
+            सरकारी योजनांची माहिती आणि AI सुविधा वापरण्यासाठी
+            कृपया लॉगिन करा.
+        </p>
+
+        <button
+            type="button"
+            class="popup-login-btn"
+            onclick="goToLogin()">
+            लॉगिन करा
+        </button>
+
+        <button
+            type="button"
+            class="popup-later-btn"
+            onclick="closeLoginPopup()">
+            नंतर पाहू
+        </button>
+    </div>
+</div>
+
+<div id="jansaarthiChatbot" class="jansaarthi-chatbot">
+
+    <div class="chatbot-header">
+        <div>
+            <strong>✨ जनसारथी AI</strong>
+            <small>सरकारी योजना सहाय्यक</small>
+        </div>
+
+        <button
+            type="button"
+            onclick="closeJanSaarthiChat()">
+            ✕
+        </button>
+    </div>
+
+
+    <div
+        id="jansaarthiChatMessages"
+        class="chat-messages">
+
+        <div class="bot-message">
+            नमस्कार! 👋<br>
+            मी जनसारथी AI आहे.
+            सरकारी योजनांबाबत तुम्हाला काय माहिती हवी आहे?
+        </div>
+        <div class="chat-suggestions" id="jansaarthiSuggestions">
+
+            <button type="button"
+                onclick="sendSuggestion('माझ्यासाठी योग्य सरकारी योजना कोणत्या आहेत?')">
+                💡 माझ्यासाठी योग्य योजना कोणत्या?
+            </button>
+
+            <button type="button"
+                onclick="sendSuggestion('विद्यार्थ्यांसाठी सरकारी योजना कोणत्या आहेत?')">
+                🎓 विद्यार्थ्यांसाठी योजना
+            </button>
+
+            <button type="button"
+                onclick="sendSuggestion('शेतकऱ्यांसाठी सरकारी योजना कोणत्या आहेत?')">
+                🌾 शेतकऱ्यांसाठी योजना
+            </button>
+
+            <button type="button"
+                onclick="sendSuggestion('महिलांसाठी सरकारी योजना कोणत्या आहेत?')">
+                👩 महिलांसाठी योजना
+            </button>
+
+            <button type="button"
+                onclick="sendSuggestion('नवीन सरकारी योजना कोणत्या आहेत?')">
+                🆕 नवीन योजना
+            </button>
+
+        </div>
+
+    </div>
+    <div class="chat-input-area">
+
+        <input
+            type="text"
+            id="jansaarthiChatInput"
+            placeholder="तुमचा प्रश्न लिहा..."
+            autocomplete="off">
+
+        <button
+            type="button"
+            onclick="sendJanSaarthiMessage()">
+            ➤
+        </button>
+    </div>
+</div>
+<button
+    type="button"
+    id="chatbotFloatingButton"
+    onclick="openJanSaarthiChat()">
+
+    ✨
+
+</button>
+
+<script src="https://jansaarthi-backend-production-d805.up.railway.app/socket.io/socket.io.js"></script>
+<script src="script.js"></script>
+
+<script>
+function showJanSaarthiLoginPopup() {
+    const popup = document.getElementById("loginPopup");
+    if (!popup) return;
+
+    let loggedIn = false;
+
+    try {
+        const user = JSON.parse(localStorage.getItem("jansaarthiUser") || "null");
+        loggedIn = !!(user && user.mobile);
+    } catch (e) {
+        loggedIn = false;
+    }
+
+    const dismissed = sessionStorage.getItem("jansaarthiPopupDismissed");
+
+if (!loggedIn && !dismissed) {
+    popup.style.setProperty("display", "flex", "important");
+
+    setTimeout(function () {
+        popup.style.setProperty("display", "none", "important");
+    }, 10000);
+
+} else {
+    popup.style.setProperty("display", "none", "important");
+}
+}
+
+function closeLoginPopup() {
+    const popup = document.getElementById("loginPopup");
+    if (popup) popup.style.setProperty("display", "none", "important");
+    sessionStorage.setItem("jansaarthiPopupDismissed", "true");
+}
+
+function goToLogin() {
+    window.location.href = "login.html";
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", showJanSaarthiLoginPopup);
+} else {
+    showJanSaarthiLoginPopup();
+}
+</script>
+
+</body>
+</html>
