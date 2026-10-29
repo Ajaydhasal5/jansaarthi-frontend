@@ -5265,7 +5265,7 @@ function logoutUser() {
     );
 
     window.location.href =
-        "login.html";
+        "index.html";
 }
 
 function logout() {
